@@ -321,3 +321,12 @@ body {
   background: #58d8ae;
   color: black;
 }
+
+.action-btn.delete {
+  background: #991b1b;
+  color: white;
+}
+
+.action-btn.delete:hover {
+  background: #7f1d1d;
+}

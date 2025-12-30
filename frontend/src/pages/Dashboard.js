@@ -22,6 +22,12 @@ const Dashboard = () => {
     await API.put(`/users/${id}/deactivate`);
     loadUsers();
   };
+  const deleteUser = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this user?")) return;
+
+  await API.delete(`/users/${id}`);
+  setUsers(users.filter((u) => u._id !== id));
+};
 
   return (
   <div className="dashboard-card">
@@ -59,11 +65,19 @@ const Dashboard = () => {
                 Activate
               </button>
               <button
-                className="action-btn deactivate"
-                onClick={() => deactivate(u._id)}
+                  className="action-btn deactivate"
+                  onClick={() => deactivate(u._id)}
               >
-                Deactivate
+                  Deactivate
               </button>
+
+              <button
+                  className="action-btn delete"
+                  onClick={() => deleteUser(u._id)}
+              >
+                  Delete
+              </button>
+
             </td>
           </tr>
         ))}
