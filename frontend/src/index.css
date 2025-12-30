@@ -1,0 +1,323 @@
+/* Full page background already set */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+
+  background-image: url("./assets/bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Auth card */
+.auth-card {
+  background: white;
+  width: 360px;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Title */
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* Inputs */
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* Button */
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.auth-card button:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Links */
+.auth-card p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-card a {
+  color: #007bff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.auth-card a:hover {
+  text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007bff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+.nav-left a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.nav-left a:hover {
+  text-decoration: underline;
+}
+
+.logout-btn {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #e6e6e6;
+}
+
+/* Profile Card */
+.profile-card {
+  background: lightgoldenrodyellow;
+  width: 400px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Profile rows */
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.profile-row span:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Role badge */
+.role-badge {
+  background: #007bff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background: white;
+  width: 700px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* User Table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.user-table thead {
+  background: #f1f5f9;
+}
+
+.user-table tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Badges */
+.role-badge.admin {
+  background: #2563eb;
+  color: white;
+}
+
+.role-badge.user {
+  background: #64748b;
+  color: white;
+}
+
+.status-badge.active {
+  background: #16a34a;
+  color: white;
+}
+
+.status-badge.inactive {
+  background: #dc2626;
+  color: white;
+}
+
+.role-badge,
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+/* Action Buttons */
+.action-btn {
+  border: none;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.action-btn.activate {
+  background: #22c55e;
+  color: white;
+}
+
+.action-btn.deactivate {
+  background: #ef4444;
+  color: white;
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Profile Wrapper */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+}
+
+/* Professional Profile Card */
+.profile-card-pro {
+  background: #fffef5;
+  width: 500px;
+  padding: 35px 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Title */
+.profile-card-pro h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #222;
+}
+
+/* Profile row */
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 20px;
+}
+
+.profile-item:last-child {
+  border-bottom: none;
+}
+
+/* Labels */
+.profile-item .label {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Values */
+.profile-item .value {
+  font-weight: 500;
+  color: #111827;
+}
+
+/* Role Pill */
+.role-pill {
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.role-pill.admin {
+  background: #6086d9;
+  color: black;
+}
+
+.role-pill.user {
+  background: #58d8ae;
+  color: black;
+}
