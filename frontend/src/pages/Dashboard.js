@@ -28,15 +28,14 @@ const Dashboard = () => {
   try {
     await API.delete(`/users/${id}`);
 
-    setUsers((prevUsers) =>
-      prevUsers.filter((user) => user._id !== id)
-    );
-
+    setUsers((prev) => prev.filter((u) => u._id !== id));
     alert("User deleted successfully");
   } catch (error) {
+    console.error(error);
     alert("Failed to delete user");
   }
 };
+
 
 
   return (
