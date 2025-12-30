@@ -22,12 +22,22 @@ const Dashboard = () => {
     await API.put(`/users/${id}/deactivate`);
     loadUsers();
   };
-  const deleteUser = async (id) => {
+    const deleteUser = async (id) => {
   if (!window.confirm("Are you sure you want to delete this user?")) return;
 
-  await API.delete(`/users/${id}`);
-  setUsers(users.filter((u) => u._id !== id));
+  try {
+    await API.delete(`/users/${id}`);
+
+    setUsers((prevUsers) =>
+      prevUsers.filter((user) => user._id !== id)
+    );
+
+    alert("User deleted successfully");
+  } catch (error) {
+    alert("Failed to delete user");
+  }
 };
+
 
   return (
   <div className="dashboard-card">
