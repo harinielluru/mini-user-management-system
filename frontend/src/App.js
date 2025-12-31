@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
@@ -10,24 +10,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <BrowserRouter>
-      <MainApp />
-    </BrowserRouter>
-  );
-}
-
-function MainApp() {
-  const [user, setUser] = useState(null);
-  const location = useLocation();
-
-  const hideNavbar =
-    location.pathname === "/login" || location.pathname === "/signup";
-
-  return (
-    <>
-      {user && !hideNavbar && <Navbar user={user} />}
+      <Navbar />
 
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
@@ -35,7 +21,7 @@ function MainApp() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <Profile setUser={setUser} />
+              <Profile />
             </ProtectedRoute>
           }
         />
@@ -49,7 +35,7 @@ function MainApp() {
           }
         />
       </Routes>
-    </>
+    </BrowserRouter>
   );
 }
 

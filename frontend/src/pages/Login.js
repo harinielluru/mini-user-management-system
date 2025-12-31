@@ -12,10 +12,9 @@ const Login = () => {
     try {
       const res = await API.post("/auth/login", form);
 
-      // ✅ SAVE TOKEN CORRECTLY
+
       localStorage.setItem("token", res.data.token);
 
-      // ✅ Navigate ONLY after saving token
       navigate("/profile");
     } catch (error) {
       alert("Invalid email or password");

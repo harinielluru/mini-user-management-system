@@ -1,28 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Navbar = ({ user }) => {
-  const navigate = useNavigate();
+const API = axios.create({
+  baseURL: "https://mini-user-management-system-1zv0.onrender.com/api"
+});
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+API.interceptors.request.use((req) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+  return req;
+});
 
-  return (
-    <nav className="navbar">
-      <div className="nav-left">
-        <Link to="/profile">Profile</Link>
-
-        {user?.role === "admin" && (
-          <Link to="/dashboard">Admin Dashboard</Link>
-        )}
-      </div>
-
-      <button className="logout-btn" onClick={logout}>
-        Logout
-      </button>
-    </nav>
-  );
-};
-
-export default Navbar;
+export default API;

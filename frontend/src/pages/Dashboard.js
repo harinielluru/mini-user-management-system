@@ -1,56 +1,98 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../services/api";
 
-const Login = () => {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
+const Dashboard = () => {
+  const [users, setUsers] = useState([]);
 
-  const submit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await API.post("/auth/login", form);
-
-      localStorage.setItem("token", res.data.token);
-
-      navigate("/profile");
-    } catch (error) {
-      alert("Invalid email or password");
-    }
+  const loadUsers = async () => {
+    const res = await API.get("/users");
+    setUsers(res.data);
   };
 
-  return (
-    <form className="auth-card" onSubmit={submit}>
-      <h2>Login</h2>
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={form.email}
-        onChange={(e) =>
-          setForm({ ...form, email: e.target.value })
-        }
-        required
-      />
+  const activate = async (id) => {
+    await API.put(`/users/${id}/activate`);
+    loadUsers();
+  };
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={(e) =>
-          setForm({ ...form, password: e.target.value })
-        }
-        required
-      />
+  const deactivate = async (id) => {
+    await API.put(`/users/${id}/deactivate`);
+    loadUsers();
+  };
+    const deleteUser = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this user?")) return;
 
-      <button type="submit">Login</button>
+  try {
+    await API.delete(`/users/${id}`);
 
-      <p>
-        Don’t have an account? <Link to="/signup">Signup</Link>
-      </p>
-    </form>
-  );
+    setUsers((prev) => prev.filter((u) => u._id !== id));
+    alert("User deleted successfully");
+  } catch (error) {
+    console.error(error);
+    alert("Failed to delete user");
+  }
 };
 
-export default Login;
+  return (
+  <div className="dashboard-card">
+    <h2>Admin Dashboard</h2>
+
+    <table className="user-table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {users.map((u) => (
+          <tr key={u._id}>
+            <td>{u.email}</td>
+            <td>
+              <span className={`role-badge ${u.role}`}>
+                {u.role}
+              </span>
+            </td>
+            <td>
+              <span className={`status-badge ${u.status}`}>
+                {u.status}
+              </span>
+            </td>
+            <td>
+              <button
+                className="action-btn activate"
+                onClick={() => activate(u._id)}
+              >
+                Activate
+              </button>
+              <button
+                  className="action-btn deactivate"
+                  onClick={() => deactivate(u._id)}
+              >
+                  Deactivate
+              </button>
+
+              <button
+                  className="action-btn delete"
+                  onClick={() => deleteUser(u._id)}
+              >
+                  Delete
+              </button>
+
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
+};
+
+export default Dashboard;
